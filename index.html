@@ -1,0 +1,301 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Artist Search</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.deep_purple-pink.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+    
+    #table_div {
+    width: 50%;
+    margin: 0 auto; 
+      }
+    </style>
+  </head>
+  <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+          <h3>Recording Artist Search</h3>
+        </div>
+        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        </div>
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
+          <a id="NewSearch" href="#overview" class="mdl-layout__tab is-active">Search For A New Artist</a>
+          <a href="#features" class="mdl-layout__tab">About</a>
+
+        </div>
+      </header>
+      <main class="mdl-layout__content">
+        <div class="mdl-layout__tab-panel is-active" id="overview">
+          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="lyrics">
+            <div class="mdl-card mdl-cell mdl-cell--12-col" id="TextBox">
+              <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+                <h4 class="mdl-cell mdl-cell--12-col">Enter the name of the artist</h4>
+                    <div class="mdl-textfield mdl-js-textfield is-upgraded" data-upgraded=",MaterialTextfield">
+                      <input class="mdl-textfield__input" id="txtQuery" type="text">
+                    </div>
+                  
+                  <button id="btnSearch" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" data-upgraded=",MaterialButton,MaterialRipple">
+                    Find Artist
+                  <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+                <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone"> </div>
+              </div>
+
+            </div>
+
+          </section>
+
+         <div id="table_div"></div>
+              
+        </div>
+        <div class="mdl-layout__tab-panel" id="features">
+          <section class="section--center mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-cell mdl-cell--12-col">
+              <h2>About</h2>
+                    <h4>Data</h4>
+                    <p>The sources used for this project were the <a href="https://developer.musicgraph.com/">MusicGraph API</a> and the <a href="http://api.lyricsnmusic.com/api">LyricsNMusic API</a>.
+                     The MusicGraph API was used twice to first get information about an artist that the user entered and display it on screen
+                     as well as a special artist Id that the API uses in its other functions. The second call uses the artist Id to find albums that the artist
+                     has released. These are displayed on screen using a google data table. The LyricsNMusic API is used to seach for lyrics to popular songs by the artist 
+                     if the user wants to do that.</p>
+                     <h4>Framework</h4>
+                     <p>The framework used for this project is obviously MDL. I decided to use this framework because I thought it might be the most aesthetically
+                     pleasing framework for a website to display information about an artist. During the project I starting thinking that I might have liked to use Jquery Mobile 
+                     more but decided to stick with MDL because I had already progressed too far. The reason I thought jquery mobile may have been better was that the 
+                     functionality of links to pages through hrefs might have been a better way to do what I executed on this page.</p>
+                    <h4>Process</h4>
+                    <p>I definitely should have set aside more time to work on this project. The project was definitely completable in the time I actually spent
+                    working on it, but it would have been much less stressful if I had more. The largest challenge I faced during the project was a CORS issue which
+                    ended up taking much longer than expected. In total I am assuming I spent atleast 8 total hours working on this website, although it may not look like it. </p>
+                    <h4>Info</h4>
+                    <p></p>
+            
+            
+            
+            
+            </div>  
+          </section>
+        </div>
+
+      </main>
+    </div>
+    <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+     <script>
+
+
+      
+      $("#btnSearch").click (function () {
+        var usrInput = $("#txtQuery").val();
+        var api1URL="http://api.musicgraph.com/api/v2/artist/search?api_key=5452fc79481acbf833242b9f65411533&name=";
+        var replaced = usrInput.split(' ').join('+');
+        var HTMLcode ="";
+        api1URL+=replaced;
+        console.log(api1URL);
+        
+        $.ajax({
+          url: api1URL,
+          method: 'GET',
+        }).done(function(result) {       
+          $("#TextBox").empty();
+          
+          var artistID = result.data[0].id;
+          
+          HTMLcode='<div class="mdl-card mdl-cell mdl-cell--12-col">'+
+            '<p>An image may be found at:<href src="'+result.data[0].musicbrainz_image_url +'">' +result.data[0].musicbrainz_image_url+'</href></p>'+
+            '<h3>Name: '+result.data[0].name+'</h3>'+
+            '<h3>Genre: '+result.data[0].main_genre+'</h3>'+
+            '<h3>Decade: '+result.data[0].decade+'</h3>'+
+            '<h3>Country of origin: '+result.data[0].country_of_origin+'</h3>'+
+            '<button id="btnSearch2" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">'+
+            'Search for lyrics by this artist'+
+            '</button>'+
+            '</div>';
+          
+          $("#TextBox").html(HTMLcode);
+          
+        var api1URL2="http://api.musicgraph.com/api/v2/artist/"+ artistID +"/albums?api_key=5452fc79481acbf833242b9f65411533";  
+          
+        $.ajax({
+          url: api1URL2,
+          method: 'GET',
+        })
+        .done(function(result) {  
+        console.log(api1URL2);
+        var dataLength = result.data.length;
+        google.charts.load('current', {'packages':['table']});
+        google.charts.setOnLoadCallback(drawTable);
+
+        function drawTable() {
+          var tableData = new google.visualization.DataTable();
+          tableData.addColumn('string', 'Type');
+          tableData.addColumn('number', 'Year');
+          tableData.addColumn('string', 'Title');
+          for(var i = 0; i < dataLength; i++){
+            console.log(i);
+            tableData.addRow([result.data[i].product_form,{v:(result.data[i].release_year),f:(result.data[i].release_year).toString()},result.data[i].title]);
+           }
+
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+
+        table.draw(tableData, {showRowNumber: false, width: '100%', height: '100%'});
+      }
+      
+
+           })
+           .fail(function(err) {
+             console.log("InnerFunction Failed");
+             console.log(api1URL2);
+
+            throw err;
+          });
+          
+
+        })
+        .fail(function(err) {
+          console.log("Outer Function Failed");
+
+          throw err;
+        });
+        
+            $(document).delegate('#btnSearch2', 'click', function()
+    {
+      var api2URL = "http://api.lyricsnmusic.com/songs?api_key=01786afb8fdf84985b519bdb9c2d47&artist=";
+      api2URL+= usrInput + "&callback=js_function";
+      console.log(api2URL);
+      
+      $.ajax({
+          url: api2URL,
+          method: 'GET',
+          dataType:"jsonp",
+          jsonpCallback:"lyricTable"
+        }).done(function(result) {       
+            
+          
+        })
+        
+        .fail(function(err) {
+          console.log("Second button failed");
+
+          throw err;
+        });
+          
+          
+    });
+
+        
+      });
+      
+      
+    function lyricTable(json){
+        
+          console.log(json);
+          var counter = 0;
+      
+      
+          var lyricHtmlCode = '<table class="mdl-data-table mdl-js-data-table mdl-data-table mdl-shadow--2dp">'+
+          '<thead>'+
+          '<tr>'+
+          '<th>Song Name</th>'+
+          '<th>URL for lyrics</th>'+
+          '</tr>'+
+          '</thead>'+
+          '<tbody>';
+      
+          $("#TextBox").remove()
+          $("#table_div").remove();
+             
+          
+          var iterationJson=json.data;
+          $.each(iterationJson, function (i, val){
+            console.log(counter);
+            console.log(i);
+            console.log(val);
+            lyricHtmlCode +='<tr>'+
+            '<td>'+val.title+'</td>'+
+            '<td><a href='+val.url+'>'+val.url +'</a></td>'+
+            '</tr>';
+            counter++;
+          });
+          lyricHtmlCode+='</tbody>'+'</table>';
+          
+
+          $("#lyrics").append('<h3>Lyrics for Popular songs by '+ capitalizeFirstLetter(json.data[0].artist.name) +'</h3><button id="btnSearch3" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"> Search for another artist </button>');
+          $("#lyrics").append(lyricHtmlCode);
+      
+    }
+    
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+      
+ $("#NewSearch").click (function () {
+    location.reload();
+   
+ });
+
+$(document).delegate('#btnSearch3', 'click', function(){
+    location.reload();
+});      
+      
+      </script>
+  </body>
+</html>
